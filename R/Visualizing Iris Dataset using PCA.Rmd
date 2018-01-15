@@ -1,0 +1,28 @@
+---
+title: "Visualizing Iris Dataset using PCA"
+output: html_notebook
+---
+
+This notebook is based on the [Computing and visualizing PCA in R](https://www.r-bloggers.com/computing-and-visualizing-pca-in-r/) example from R-bloggers. 
+
+```{r}
+# Load data
+data(iris)
+head(iris)
+```
+
+```{r}
+# log transform 
+log.ir <- log(iris[, 1:4])
+ir.species <- iris[, 5]
+ 
+# apply PCA - scale. = TRUE is highly 
+# advisable, but default is FALSE. 
+ir.pca <- prcomp(log.ir,
+                 center = TRUE,
+                 scale. = TRUE) 
+```
+
+```{r}
+print(ir.pca)
+```
