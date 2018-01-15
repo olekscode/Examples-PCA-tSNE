@@ -6,6 +6,10 @@ output: html_notebook
 This notebook is based on the [Computing and visualizing PCA in R](https://www.r-bloggers.com/computing-and-visualizing-pca-in-r/) example from R-bloggers. 
 
 ```{r}
+library(ggbiplot)
+```
+
+```{r}
 # Load data
 data(iris)
 head(iris)
@@ -25,4 +29,14 @@ ir.pca <- prcomp(log.ir,
 
 ```{r}
 print(ir.pca)
+```
+```{r}
+g <- ggbiplot(ir.pca, obs.scale = 1, var.scale = 1, 
+              groups = ir.species, ellipse = TRUE, 
+              circle = TRUE)
+g <- g + scale_color_discrete(name = '')
+g <- g + theme(legend.direction = 'horizontal', 
+               legend.position = 'top')
+print(g)
+
 ```
